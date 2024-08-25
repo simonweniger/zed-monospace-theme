@@ -1,0 +1,460 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Monospace Zed Theme",
+  "description": "A conversion of the IDX Monospace Dark theme for Zed.",
+  "type": "object",
+  "required": ["author", "name", "themes"],
+  "properties": {
+    "author": {
+      "type": "string",
+      "default": "Simon Weniger <hello@simonweniger.com>"
+    },
+    "name": {
+      "type": "string",
+      "default": "Monospace Dark"
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ThemeContent"
+      }
+    }
+  },
+  "definitions": {
+    "AppearanceContent": {
+      "type": "string",
+      "enum": ["light", "dark"]
+    },
+    "FontStyleContent": {
+      "type": "string",
+      "enum": ["normal", "italic", "oblique"]
+    },
+    "HighlightStyleContent": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "default": null,
+          "type": ["string", "null"]
+        },
+        "font_style": {
+          "default": null,
+          "anyOf": [
+            {
+              "$ref": "#/definitions/FontStyleContent"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "font_weight": {
+          "default": null,
+          "anyOf": [
+            {
+              "enum": [100, 200, 300, 400, 500, 600, 700, 800, 900]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "PlayerColorContent": {
+      "type": "object",
+      "properties": {
+        "background": {
+          "type": ["string", "null"]
+        },
+        "cursor": {
+          "type": ["string", "null"]
+        },
+        "selection": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "ThemeContent": {
+      "description": "The content of a serialized theme.",
+      "type": "object",
+      "required": ["appearance", "name", "style"],
+      "properties": {
+        "appearance": {
+          "$ref": "#/definitions/AppearanceContent",
+          "default": "dark"
+        },
+        "name": {
+          "type": "string",
+          "default": "Monospace Dark"
+        },
+        "style": {
+          "$ref": "#/definitions/ThemeStyleContent"
+        }
+      }
+    },
+    "ThemeStyleContent": {
+      "description": "The content of a serialized theme.",
+      "type": "object",
+      "properties": {
+        "background": {
+          "description": "Background Color. Used for the app background and blank panels or windows.",
+          "default": "#171f2bff",
+          "type": ["string", "null"]
+        },
+        "border": {
+          "description": "Border color. Used for most borders, is usually a high contrast color.",
+          "default": "#333e4fff",
+          "type": ["string", "null"]
+        },
+        "border.focused": {
+          "description": "Border color. Used for focused elements, like keyboard focused list item.",
+          "default": "#8964e8ff",
+          "type": ["string", "null"]
+        },
+        "border.selected": {
+          "description": "Border color. Used for selected elements, like an active search filter or selected checkbox.",
+          "default": "#a87ffbff",
+          "type": ["string", "null"]
+        },
+        "editor.background": {
+          "default": "#171f2bff",
+          "type": ["string", "null"]
+        },
+        "editor.foreground": {
+          "default": "#d9dfe7ff",
+          "type": ["string", "null"]
+        },
+        "editor.line_number": {
+          "description": "Text Color. Used for the text of the line number in the editor gutter.",
+          "default": "#475365ff",
+          "type": ["string", "null"]
+        },
+        "editor.active_line_number": {
+          "description": "Text Color. Used for the text of the line number in the editor gutter when the line is highlighted.",
+          "default": "#d9dfe7ff",
+          "type": ["string", "null"]
+        },
+        "syntax": {
+          "description": "The styles for syntax nodes.",
+          "default": {},
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/HighlightStyleContent"
+          }
+        },
+        "terminal.background": {
+          "description": "Terminal background color.",
+          "default": "#171f2bff",
+          "type": ["string", "null"]
+        },
+        "terminal.foreground": {
+          "description": "Terminal foreground color.",
+          "default": "#a4afbdff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.black": {
+          "description": "Black ANSI terminal color.",
+          "default": "#738295ff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.red": {
+          "description": "Red ANSI terminal color.",
+          "default": "#f76769ff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.green": {
+          "description": "Green ANSI terminal color.",
+          "default": "#17b877ff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.yellow": {
+          "description": "Yellow ANSI terminal color.",
+          "default": "#ffa23eff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.blue": {
+          "description": "Blue ANSI terminal color.",
+          "default": "#708fffff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.magenta": {
+          "description": "Magenta ANSI terminal color.",
+          "default": "#a87ffbff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.cyan": {
+          "description": "Cyan ANSI terminal color.",
+          "default": "#25a6e9ff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.white": {
+          "description": "White ANSI terminal color.",
+          "default": "#a4afbdff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_black": {
+          "description": "Bright black ANSI terminal color.",
+          "default": "#8b98a9ff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_red": {
+          "description": "Bright red ANSI terminal color.",
+          "default": "#fc8f8eff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_green": {
+          "description": "Bright green ANSI terminal color.",
+          "default": "#66ce98ff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_yellow": {
+          "description": "Bright yellow ANSI terminal color.",
+          "default": "#ffc26eff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_blue": {
+          "description": "Bright blue ANSI terminal color.",
+          "default": "#a2b6ffff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_magenta": {
+          "description": "Bright magenta ANSI terminal color.",
+          "default": "#c8aaffff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_cyan": {
+          "description": "Bright cyan ANSI terminal color.",
+          "default": "#71c2eeff",
+          "type": ["string", "null"]
+        },
+        "terminal.ansi.bright_white": {
+          "description": "Bright white ANSI terminal color.",
+          "default": "#fafbfeff",
+          "type": ["string", "null"]
+        }
+      }
+    }
+  },
+  "themes": [
+    {
+      "appearance": "dark",
+      "name": "Monospace Dark",
+      "style": {
+        "background": "#171f2bff",
+        "border": "#333e4fff",
+        "border.focused": "#8964e8ff",
+        "border.selected": "#a87ffbff",
+        "editor.background": "#171f2bff",
+        "editor.foreground": "#d9dfe7ff",
+        "editor.line_number": "#475365ff",
+        "editor.active_line_number": "#d9dfe7ff",
+        "syntax": {
+          "comment": {
+            "color": "#7f8d9fff"
+          },
+          "constant": {
+            "color": "#92a9ffff"
+          },
+          "entity": {
+            "color": "#bd9cfeff"
+          },
+          "variable.parameter.function": {
+            "color": "#d9dfe7ff"
+          },
+          "entity.name.tag": {
+            "color": "#77d5a3ff"
+          },
+          "keyword": {
+            "color": "#fd8da3ff"
+          },
+          "storage": {
+            "color": "#fd8da3ff"
+          },
+          "annotation": {
+            "color": "#fd8da3ff"
+          },
+          "string": {
+            "color": "#77d5a3ff"
+          },
+          "support": {
+            "color": "#92a9ffff"
+          },
+          "support.type.property-name": {
+            "color": "#85cdf1ff"
+          },
+          "meta.property-name": {
+            "color": "#92a9ffff"
+          },
+          "variable": {
+            "color": "#ffd395ff"
+          },
+          "invalid.broken": {
+            "color": "#ffc6d0ff",
+            "font_style": "italic"
+          },
+          "invalid.deprecated": {
+            "color": "#ffc6d0ff",
+            "font_style": "italic"
+          },
+          "invalid.illegal": {
+            "color": "#ffc6d0ff",
+            "font_style": "italic"
+          },
+          "invalid.unimplemented": {
+            "color": "#ffc6d0ff",
+            "font_style": "italic"
+          },
+          "carriage-return": {
+            "color": "#1f2939ff",
+            "font_style": "italic underline",
+            "background": "#fd8da3ff"
+          },
+          "message.error": {
+            "color": "#ffc6d0ff"
+          },
+          "string.source": {
+            "color": "#d9dfe7ff"
+          },
+          "string.variable": {
+            "color": "#92a9ffff"
+          },
+          "source.regexp": {
+            "color": "#77d5a3ff"
+          },
+          "string.regexp.character-class": {
+            "color": "#77d5a3ff"
+          },
+          "string.regexp.constant.character.escape": {
+            "color": "#77d5a3ff",
+            "font_style": "bold"
+          },
+          "support.constant": {
+            "color": "#92a9ffff"
+          },
+          "support.variable": {
+            "color": "#92a9ffff"
+          },
+          "meta.module-reference": {
+            "color": "#92a9ffff"
+          },
+          "punctuation.definition.list.begin.markdown": {
+            "color": "#ffd395ff"
+          },
+          "markup.heading": {
+            "color": "#92a9ffff",
+            "font_style": "bold"
+          },
+          "markup.quote": {
+            "color": "#77d5a3ff"
+          },
+          "markup.italic": {
+            "color": "#d9dfe7ff",
+            "font_style": "italic"
+          },
+          "markup.bold": {
+            "color": "#d9dfe7ff",
+            "font_style": "bold"
+          },
+          "markup.raw": {
+            "color": "#92a9ffff"
+          },
+          "markup.deleted": {
+            "color": "#ffc6d0ff",
+            "background": "#670023ff"
+          },
+          "markup.inserted": {
+            "color": "#77d5a3ff",
+            "background": "#00391fff"
+          },
+          "markup.changed": {
+            "color": "#ffd395ff",
+            "background": "#834314ff"
+          },
+          "markup.ignored": {
+            "color": "#92a9ffff",
+            "background": "#333e4fff"
+          },
+          "meta.diff.range": {
+            "color": "#bd9cfeff",
+            "font_style": "bold"
+          },
+          "meta.diff.header": {
+            "color": "#92a9ffff"
+          },
+          "meta.separator": {
+            "color": "#92a9ffff",
+            "font_style": "bold"
+          },
+          "meta.output": {
+            "color": "#92a9ffff"
+          },
+          "brackethighlighter.tag": {
+            "color": "#9ca7b6ff"
+          },
+          "brackethighlighter.curly": {
+            "color": "#9ca7b6ff"
+          },
+          "brackethighlighter.round": {
+            "color": "#9ca7b6ff"
+          },
+          "brackethighlighter.square": {
+            "color": "#9ca7b6ff"
+          },
+          "brackethighlighter.angle": {
+            "color": "#9ca7b6ff"
+          },
+          "brackethighlighter.quote": {
+            "color": "#9ca7b6ff"
+          },
+          "brackethighlighter.unmatched": {
+            "color": "#ffc6d0ff"
+          },
+          "constant.other.reference.link": {
+            "color": "#77d5a3ff",
+            "font_style": "underline"
+          },
+          "string.other.link": {
+            "color": "#77d5a3ff",
+            "font_style": "underline"
+          },
+          "fenced_code.block.language": {
+            "color": "#92a9ffff"
+          },
+          "markup.inline.raw.string.markdown": {
+            "color": "#77d5a3ff"
+          },
+          "markup.bold": {
+            "color": "#ffd395ff",
+            "font_style": "bold"
+          },
+          "markup.italic": {
+            "color": "#85cdf1ff",
+            "font_style": "italic"
+          },
+          "markup.strikethrough": {
+            "color": "#ffc6d0ff",
+            "font_style": "strikethrough"
+          }
+        },
+        "terminal.background": "#171f2bff",
+        "terminal.foreground": "#a4afbdff",
+        "terminal.ansi.black": "#738295ff",
+        "terminal.ansi.red": "#f76769ff",
+        "terminal.ansi.green": "#17b877ff",
+        "terminal.ansi.yellow": "#ffa23eff",
+        "terminal.ansi.blue": "#708fffff",
+        "terminal.ansi.magenta": "#a87ffbff",
+        "terminal.ansi.cyan": "#25a6e9ff",
+        "terminal.ansi.white": "#a4afbdff",
+        "terminal.ansi.bright_black": "#8b98a9ff",
+        "terminal.ansi.bright_red": "#fc8f8eff",
+        "terminal.ansi.bright_green": "#66ce98ff",
+        "terminal.ansi.bright_yellow": "#ffc26eff",
+        "terminal.ansi.bright_blue": "#a2b6ffff",
+        "terminal.ansi.bright_magenta": "#c8aaffff",
+        "terminal.ansi.bright_cyan": "#71c2eeff",
+        "terminal.ansi.bright_white": "#fafbfeff"
+      }
+    }
+  ]
+}
